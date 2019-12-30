@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 
 function Question(props) {
 
-    const {saveBudget} = props;
+    const {saveBudget , saveQuestionBudget} = props;
 
     const [amount , saveAmount] = useState(0);
     const [error , saveError] = useState(false);
@@ -16,6 +16,7 @@ function Question(props) {
         }
         saveError(false);
         saveBudget(amount);
+        saveQuestionBudget(false);
     }
     return (
         <Fragment>
