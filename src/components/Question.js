@@ -3,7 +3,7 @@ import React, { Fragment, useState } from 'react';
 function Question() {
 
     const [amount , saveAmount] = useState(0);
-    const [Error , saveError] = useState(false);
+    const [error , saveError] = useState(false);
 
     const addBudget = e =>{
         e.preventDefault();
@@ -16,6 +16,7 @@ function Question() {
     return (
         <Fragment>
             <h2>Tu Presupuesto</h2>
+            {error ?<p className = "alert alert-danger error">Presupuesto no es correcto</p> : null}
             <form
             onSubmit = {addBudget}
             >
