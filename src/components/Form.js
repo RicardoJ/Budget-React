@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import Error from './Error';
+import shortid from 'shortid';
+
 function Form(props) {
+    const {saveExpense} = props;
     const [nameExpense, saveNameExpense] = useState('');
     const [amountExpense, saveAmountExpense] = useState(0);
     const [error, saveError] = useState(false);
@@ -11,6 +14,15 @@ function Form(props) {
             saveError(true);
             return;
         }
+        const expense ={
+            nameExpense,
+            amountExpense,
+            id: shortid.generate()
+        }
+        saveError(false);
+        saveExpense(expense);
+        saveNameExpense('');
+        saveAmountExpense('');
     }
     return (
         <form
@@ -25,6 +37,7 @@ function Form(props) {
                     className="u-full-width"
                     placeholder="Ej. Transporte"
                     onChange = {e => saveNameExpense(e.target.value)}
+                    value = {nameExpense}
                 />
             </div>
             <div className="campo">
@@ -34,6 +47,7 @@ function Form(props) {
                     className="u-full-width"
                     placeholder="Ej. 1000"
                     onChange = {e => saveAmountExpense(parseInt(e.target.value ,10))}
+                    value = {amountExpense}
                 />
             </div>
             <input type="submit" className="button-primary u-full-width" value="Agregar gasto" />
