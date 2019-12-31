@@ -5,8 +5,17 @@ function Form(props) {
     const [amountExpense, saveAmountExpense] = useState(0);
     const [error, saveError] = useState(false);
 
+    const addExpense = e =>{
+        e.preventDefault();
+        if (amountExpense <= 0 || isNaN(amountExpense) || nameExpense === '') {
+            saveError(true);
+            return;
+        }
+    }
     return (
-        <form>
+        <form
+        onSubmit = {addExpense}
+        >
             <h2>Agrega tus gastos</h2>
             <div className="campo">
                 <label>Nombre del gasto</label>
@@ -14,6 +23,7 @@ function Form(props) {
                     type="text"
                     className="u-full-width"
                     placeholder="Ej. Transporte"
+                    onChange = {e => saveNameExpense(e.target.value)}
                 />
             </div>
             <div className="campo">
@@ -22,6 +32,7 @@ function Form(props) {
                     type="number"
                     className="u-full-width"
                     placeholder="Ej. 1000"
+                    onChange = {e => saveAmountExpense(parseInt(e.target.value ,10))}
                 />
             </div>
             <input type="submit" className="button-primary u-full-width" value="Agregar gasto" />
