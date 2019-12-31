@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Error from './Error';
 function Form(props) {
     const [nameExpense, saveNameExpense] = useState('');
     const [amountExpense, saveAmountExpense] = useState(0);
@@ -17,6 +17,7 @@ function Form(props) {
         onSubmit = {addExpense}
         >
             <h2>Agrega tus gastos</h2>
+            {error ? <Error message ="Ambos campos son obligatorios o presupuesto incorrecto" /> : null}
             <div className="campo">
                 <label>Nombre del gasto</label>
                 <input
