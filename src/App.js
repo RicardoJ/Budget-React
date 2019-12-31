@@ -39,10 +39,11 @@ function App() {
                     />
                   </div>
 
-                  <div className="one-half column"></div>
+                  <div className="one-half column">
                   <List
                     expenses={expenses}
                   />
+                  </div>
                 </div>
 
               )
