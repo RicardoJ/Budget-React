@@ -3,7 +3,7 @@ import Error from './Error';
 import shortid from 'shortid';
 
 function Form(props) {
-    const {saveExpense} = props;
+    const {saveExpense , saveCreateExpense} = props;
     const [nameExpense, saveNameExpense] = useState('');
     const [amountExpense, saveAmountExpense] = useState(0);
     const [error, saveError] = useState(false);
@@ -21,6 +21,7 @@ function Form(props) {
         }
         saveError(false);
         saveExpense(expense);
+        saveCreateExpense(true);
         saveNameExpense('');
         saveAmountExpense('');
     }

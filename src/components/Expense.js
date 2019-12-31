@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Expnese = ({expense}) => (
+const Expense = ({expense}) => (
         <li className = "gastos">
             <p>
                 {expense.nameExpense}
@@ -10,4 +10,4 @@ const Expnese = ({expense}) => (
 
 );
  
-export default Expnese;
+export default Expense;

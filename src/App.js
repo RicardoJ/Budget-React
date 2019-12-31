@@ -6,13 +6,18 @@ import List from './components/List';
 function App() {
   const [budget, saveBudget] = useState(0);
   const [questionBudget, saveQuestionBudget] = useState(true);
-  const [expense , saveExpense] = useState({});
-  const [expenses , saveExpenses] = useState([]);
+  const [createExpense, saveCreateExpense] = useState(false);
+  const [expense, saveExpense] = useState({});
+  const [expenses, saveExpenses] = useState([]);
 
-  useEffect(() =>{
-    const listExpenses =[...expenses , expense];
-    saveExpenses(listExpenses);
-  }, []);
+  useEffect(() => {
+    if (createExpense) {
+      const listExpenses = [...expenses, expense];
+      saveExpenses(listExpenses);
+
+      saveCreateExpense(false);
+    }
+  }, [createExpense]);
 
   return (
     <div className="App container">
@@ -26,20 +31,21 @@ function App() {
                 saveQuestionBudget={saveQuestionBudget}
               />
               : (
-                <div className = "row">
-                  <div className = "one-half column">
-                   <Form
-                   saveExpense = {saveExpense}
-                   />
+                <div className="row">
+                  <div className="one-half column">
+                    <Form
+                      saveExpense={saveExpense}
+                      saveCreateExpense={saveCreateExpense}
+                    />
                   </div>
 
-                  <div className = "one-half column"></div>
+                  <div className="one-half column"></div>
                   <List
-                  expenses = {expenses}
+                    expenses={expenses}
                   />
-                  </div>
+                </div>
 
-          )
+              )
           }
         </div>
       </header>
