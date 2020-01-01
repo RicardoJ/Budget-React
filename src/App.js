@@ -17,6 +17,8 @@ function App() {
       const listExpenses = [...expenses, expense];
       saveExpenses(listExpenses);
 
+      const remainingBudget = remaining- expense.amountExpense;
+      saveRemaining(remainingBudget);
       saveCreateExpense(false);
     }
   }, [createExpense]);
