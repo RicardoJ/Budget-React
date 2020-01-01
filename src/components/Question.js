@@ -3,7 +3,7 @@ import Error from './Error';
 
 function Question(props) {
 
-    const {saveBudget , saveQuestionBudget} = props;
+    const {saveBudget , saveQuestionBudget , saveRemaining} = props;
 
     const [amount , saveAmount] = useState(0);
     const [error , saveError] = useState(false);
@@ -17,6 +17,7 @@ function Question(props) {
         }
         saveError(false);
         saveBudget(amount);
+        saveRemaining(amount);
         saveQuestionBudget(false);
     }
     return (
