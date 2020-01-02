@@ -21,7 +21,7 @@ function App() {
       saveRemaining(remainingBudget);
       saveCreateExpense(false);
     }
-  }, [createExpense]);
+  }, [createExpense , expenses , expense , remaining]);
 
   return (
     <div className="App container">
