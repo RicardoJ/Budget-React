@@ -23,6 +23,15 @@ function App() {
     }
   }, [createExpense , expenses , expense , remaining]);
 
+  const deleteExpense = id =>{
+    const listExpenses = [...expenses];
+    listExpenses.splice(id,1);
+    saveExpenses(listExpenses);
+
+    const remainingBudget = remaining + expense.amountExpense;
+      saveRemaining(remainingBudget);
+      saveCreateExpense(false);
+  }
   return (
     <div className="App container">
       <header>
@@ -47,6 +56,7 @@ function App() {
                   <div className="one-half column">
                   <List
                     expenses={expenses}
+                    deleteExpense={deleteExpense}
                   />
                   <Budget
                   budget = {budget}
