@@ -20,17 +20,14 @@ function App() {
       const remainingBudget = remaining- expense.amountExpense;
       saveRemaining(remainingBudget);
       saveCreateExpense(false);
-    }
+      console.log(" Restatnte " +remaining +" + Gasto "+expense.amountExpense+" = Restante Total USE "+remainingBudget)
+    } 
   }, [createExpense , expenses , expense , remaining]);
 
   const deleteExpense = id =>{
-    const listExpenses = [...expenses];
-    listExpenses.splice(id,1);
-    saveExpenses(listExpenses);
-
-    const remainingBudget = remaining + expense.amountExpense;
-      saveRemaining(remainingBudget);
-      saveCreateExpense(false);
+    const expenseDelete = expenses.filter(expense => expense.id !==id);
+    saveExpenses(expenseDelete);
+   
   }
   return (
     <div className="App container">
@@ -50,6 +47,8 @@ function App() {
                     <Form
                       saveExpense={saveExpense}
                       saveCreateExpense={saveCreateExpense}
+                      budget = {budget}
+                      remaining = {remaining}
                     />
                   </div>
 
