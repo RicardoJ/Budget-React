@@ -17,11 +17,26 @@ function App() {
       const listExpenses = [...expenses, expense];
       saveExpenses(listExpenses);
 
-      const remainingBudget = remaining- expense.amountExpense;
+      const remainingBudget = remaining - expense.amountExpense;
       saveRemaining(remainingBudget);
       saveCreateExpense(false);
+
     }
-  }, [createExpense , expenses , expense , remaining]);
+  }, [createExpense, expenses, expense, remaining]);
+
+  const deleteExpense = id => {
+    const expenseDelete = expenses.filter(expense => expense.id !== id);
+    saveExpenses(expenseDelete);
+    addExpenseEliminated(id);
+
+  }
+
+  const addExpenseEliminated = id => {
+    const expenseEliminated = expenses.find((expense) => expense.id === id)
+    const remainingBudget = remaining + expenseEliminated.amountExpense;
+    saveRemaining(remainingBudget);
+    saveCreateExpense(false);
+  }
 
   return (
     <div className="App container">
@@ -33,7 +48,7 @@ function App() {
               <Question
                 saveBudget={saveBudget}
                 saveQuestionBudget={saveQuestionBudget}
-                saveRemaining = {saveRemaining}
+                saveRemaining={saveRemaining}
               />
               : (
                 <div className="row">
@@ -41,17 +56,20 @@ function App() {
                     <Form
                       saveExpense={saveExpense}
                       saveCreateExpense={saveCreateExpense}
+                      budget={budget}
+                      remaining={remaining}
                     />
                   </div>
 
                   <div className="one-half column">
-                  <List
-                    expenses={expenses}
-                  />
-                  <Budget
-                  budget = {budget}
-                  remaining = {remaining}
-                  />
+                    <List
+                      expenses={expenses}
+                      deleteExpense={deleteExpense}
+                    />
+                    <Budget
+                      budget={budget}
+                      remaining={remaining}
+                    />
                   </div>
                 </div>
 

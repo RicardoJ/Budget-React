@@ -3,14 +3,14 @@ import Error from './Error';
 import shortid from 'shortid';
 
 function Form(props) {
-    const {saveExpense , saveCreateExpense} = props;
+    const {saveExpense , saveCreateExpense , budget , remaining} = props;
     const [nameExpense, saveNameExpense] = useState('');
-    const [amountExpense, saveAmountExpense] = useState();
+    const [amountExpense, saveAmountExpense] = useState('');
     const [error, saveError] = useState(false);
 
     const addExpense = e =>{
         e.preventDefault();
-        if (amountExpense <= 0 || isNaN(amountExpense) || nameExpense === '') {
+        if (amountExpense <= 0 || isNaN(amountExpense) || nameExpense === '' || amountExpense > budget || amountExpense > remaining) {
             saveError(true);
             return;
         }
